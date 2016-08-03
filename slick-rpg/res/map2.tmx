@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="80" height="45" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="bmap" tilewidth="16" tileheight="16" tilecount="64" columns="8">
+  <image source="bmap.png" width="128" height="128"/>
+ </tileset>
+ <layer name="Background" width="80" height="45">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QsRGDMAAAMRdARaiA/UfFWcHd36nQAtrGGDtLjumcfiy5/Pnzl+XPn78uf/78dfnz56/Lnz9/Xf78+evy589flz9//rr8+fPX5c+fvy5//vx1+fPnr8ufP39d/vz56/r/3dPDknf6AFAZL0hAOAAA
+  </data>
+ </layer>
+ <layer name="Objects" width="80" height="45">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QMQ7CQBAEwQ2AyHKE+f9TfXzhOkBIVdLko37MzNO29lo7hl3n6Ffo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo15y/PvDn9Gv0a/Rr9Gv0a/Rr9Gv0a/Rrvv3ea5dt7bN2A3S9wJFAOAAA
+  </data>
+ </layer>
+</map>
