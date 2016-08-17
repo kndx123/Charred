@@ -24,11 +24,13 @@ public class ButtonFunction {
 					sbg.enterState(0);
 					break;
 			case "WINDOWED":
-					Game.settings(false, Game.width, Game.height);
+					Game.fullscreen = false;
+					Game.settings(Game.fullscreen, Game.width, Game.height);
 					Options.fullb.setText("FULLSCREEN");
 					break;
 			case "FULLSCREEN":
-					Game.settings(true, Game.width, Game.height);
+					Game.fullscreen = true;
+					Game.settings(Game.fullscreen, Game.width, Game.height);
 					Options.fullb.setText("WINDOWED");
 					break;	
 			case "-Vol":

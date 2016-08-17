@@ -62,8 +62,12 @@ public class Options extends BasicGameState{
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		if(updateButton){
+			if(Game.fullscreen){
+				fullb = new Button(Game.width/2-font2.getWidth("WINDOWED")/2, Game.height/2,"WINDOWED", font2, true, true);
+			}else{
+				fullb = new Button(Game.width/2-font2.getWidth("FULLSCREEN")/2, Game.height/2,"FULLSCREEN", font2, true, true);
+			}
 			backb = new Button(font2.getWidth("BACK")/3, font2.getHeight()/2,"BACK", font2, true, true);
-			fullb = new Button(Game.width/2-font2.getWidth("FULLSCREEN")/2, Game.height/2,"FULLSCREEN", font2, true, true);
 			plusVol = new Button(Game.width/2-font2.getWidth("+Vol")/2+90, Game.height/2-font2.getHeight(),"+Vol", font2, true, true);
 			minusVol = new Button(Game.width/2-font2.getWidth("-Vol")*2+30, plusVol.y,"-Vol", font2, true, true);
 			plusRes = new Button(Game.width/2-font2.getWidth("+Res")/2+90, Game.height/2-(font2.getHeight()*2),"+Res", font2, true, true);
