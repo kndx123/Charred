@@ -17,8 +17,8 @@ import org.newdawn.slick.util.ResourceLoader;
 
 public class Menu extends BasicGameState{
 	TrueTypeFont font;
-	TrueTypeFont font2;
-	TrueTypeFont title;
+	static TrueTypeFont font2;
+	static TrueTypeFont title;
 	//test
 	int test;
 	//test
@@ -64,32 +64,26 @@ public class Menu extends BasicGameState{
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }  
-	    playb = new Button(Game.width/2-(font2.getWidth("PLAY")/2), Game.height/2, "PLAY", font2, true, true);
-	    optionb = new Button(Game.width/2-(font2.getWidth("OPTIONS")/2), Game.height/2+(font2.getHeight()*2), "OPTIONS", font2, true, true);
-	    exitb = new Button(Game.width/2-(font2.getWidth("EXIT")/2), Game.height/2+(font2.getHeight()*4), "EXIT", font2, true, true);
-	    gameTitle = new Button(Game.width/2-(title.getWidth(Game.gamename)/2), Game.height/4, Game.gamename, title, false, false);
+	    playb = new Button("PLAY",Game.width/2-(font2.getWidth("PLAY")/2), Game.height/2, "PLAY", font2, true, true);
+	    optionb = new Button("OPTIONS",Game.width/2-(font2.getWidth("OPTIONS")/2), Game.height/2+(font2.getHeight()*2), "OPTIONS", font2, true, true);
+	    exitb = new Button("EXIT",Game.width/2-(font2.getWidth("EXIT")/2), Game.height/2+(font2.getHeight()*4), "EXIT", font2, true, true);
+	    gameTitle = new Button(Game.gamename,Game.width/2-(title.getWidth(Game.gamename)/2), Game.height/4, Game.gamename, title, false, false);
+	}
+	
+	public static void reInit(){
+		playb = new Button(playb.getName(), Game.width/2-(font2.getWidth("PLAY")/2), Game.height/2, playb.getText(), playb.getFont(), playb.getHover(), playb.getSound());
+		optionb = new Button(optionb.getName(),Game.width/2-(font2.getWidth("OPTIONS")/2), Game.height/2+(font2.getHeight()*2), optionb.getText(), optionb.getFont(), optionb.getHover(), optionb.getSound());
+		exitb = new Button(exitb.getName(),Game.width/2-(font2.getWidth("EXIT")/2), Game.height/2+(font2.getHeight()*4), exitb.getText(), exitb.getFont(), exitb.getHover(), exitb.getSound());
+		gameTitle = new Button(gameTitle.getName(), Game.width/2-(title.getWidth(Game.gamename)/2), Game.height/4, gameTitle.getText(), gameTitle.getFont(), gameTitle.getHover(), gameTitle.getSound());
+	    updateButtons = false;
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		if(updateButtons){
-			playb = new Button(Game.width/2-(font2.getWidth("PLAY")/2), Game.height/2, "PLAY", font2, true, true);
-		    optionb = new Button(Game.width/2-(font2.getWidth("OPTIONS")/2), Game.height/2+(font2.getHeight()*2), "OPTIONS", font2, true, true);
-		    exitb = new Button(Game.width/2-(font2.getWidth("EXIT")/2), Game.height/2+(font2.getHeight()*4), "EXIT", font2, true, true);
-		    gameTitle = new Button(Game.width/2-(title.getWidth(Game.gamename)/2), Game.height/4, Game.gamename, title, false, false);
-		    updateButtons = false;
-		}
-	    
-		
 		back.draw(0, 0, Game.width, Game.height);
 		g.setColor(new Color(re, bl, gr, trans));
 		g.fillRect(0, 0, Game.width, Game.height);
 		
-//		font2.drawString(100, 100, xpos+"test"+ypos, col);
-		
-//		title.drawString(Game.width/2-(title.getWidth(Game.gamename)/2), Game.height/4, Game.gamename, new Color(tc,tc,tc,200));
-//		font2.drawString(Game.width/2-(font2.getWidth("PLAY")/2), Game.height/2, "PLAY", col);
-//		font2.drawString(Game.width/2-(font2.getWidth("OPTIONS")/2), Game.height/2+(font2.getHeight()*2), "OPTIONS", col2);
-//		font2.drawString(Game.width/2-(font2.getWidth("EXIT")/2), Game.height/2+(font2.getHeight()*4), "EXIT", col1);
+
 		gameTitle.render(title);
 		playb.render(font2);
 		optionb.render(font2);
@@ -97,11 +91,7 @@ public class Menu extends BasicGameState{
 	}
 
 
-	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-//		playb = new Rectangle(Game.width/2-(font2.getWidth("PLAY")/2), Game.height/2, font2.getWidth("PLAY"), font2.getHeight());
-//		optionb = new Rectangle(Game.width/2-(font2.getWidth("OPTIONS")/2), Game.height/2+(font2.getHeight()*2), font2.getWidth("OPTIONS"), font2.getHeight());
-//		exitb = new Rectangle(Game.width/2-(font2.getWidth("EXIT")/2), Game.height/2+(font2.getHeight()*4), font2.getWidth("EXIT"), font2.getHeight());
-		
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {	
 		playb.update(input, sbg);
 		optionb.update(input, sbg);
 		exitb.update(input, sbg);
@@ -120,60 +110,7 @@ public class Menu extends BasicGameState{
 		if(trans<1&&!transplus){
 			transplus = true;
 			transminus = false;
-		}
-//		if(playb.contains(mouse)||optionb.contains(mouse)){
-//			if(!isPlaying){
-//				sound.play();	
-//				isPlaying = true;
-//			}
-//		}else{
-//			isPlaying = false;
-//		}
-//		
-//		if(exitb.contains(mouse)){
-//			col1 = new Color(tc, tc, tc, 50);
-//			if(input.isMouseButtonDown(0)){
-//				col1 = new Color(tc, tc, tc, 15);
-//					mousedown2 = true;	
-//				}
-//				if(mousedown2 && !input.isMouseButtonDown(0)){
-//					sound.stop();
-//					AL.destroy();
-//					System.exit(1);
-//				}
-//		}else{
-//			mousedown2 = false;
-//			col1 = new Color(tc,tc,tc, 200);
-//		}	
-//		if(playb.contains(mouse)){	
-//			col = new Color(tc, tc, tc, 50);
-//			if(input.isMouseButtonDown(0)){
-//			col = new Color(tc, tc, tc, 15);
-//				mousedown = true;	
-//			}
-//			if(mousedown && !input.isMouseButtonDown(0)){
-//				mousedown = false;
-//				sbg.enterState(1);
-//			}
-//		}else{
-//			mousedown = false;
-//			col = new Color(tc, tc, tc, 200);
-//		}		
-//		if(optionb.contains(mouse)){	
-//			col2 = new Color(tc, tc, tc, 50);
-//			if(input.isMouseButtonDown(0)){
-//			col2 = new Color(tc, tc, tc, 15);
-//				mousedown3 = true;	
-//			}
-//			if(mousedown3 && !input.isMouseButtonDown(0)){
-//				mousedown3 = false;
-//				sbg.enterState(2);
-//			}
-//		}else{
-//			mousedown3 = false;
-//			col2 = new Color(tc, tc, tc, 200);
-//		}
-//		
+		}	
 	}
 	
 	public int getID() {	

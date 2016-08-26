@@ -14,7 +14,7 @@ import org.newdawn.slick.util.ResourceLoader;
 
 public class Play extends BasicGameState{
 	TrueTypeFont font;
-	TrueTypeFont font2;
+	static TrueTypeFont font2;
 	TrueTypeFont title;
 	Input input;
 	public static Button atkb;
@@ -36,7 +36,11 @@ public class Play extends BasicGameState{
 		        e.printStackTrace();
 		    }
 		
-		atkb = new Button(Game.width/2-font2.getWidth("Attack")/2, Game.height/2-font2.getHeight()/2, "Attack", font2, true, false);
+		atkb = new Button("Attack",Game.width/2-font2.getWidth("Attack")/2, Game.height/2-font2.getHeight()/2, "Attack", font2, true, false);
+	}
+	
+	public static void reInit(){
+		atkb = new Button(atkb.getName(), Game.width/2-font2.getWidth("Attack")/2, Game.height/2-font2.getHeight()/2, atkb.getText(), atkb.getFont(), atkb.getHover(), atkb.getSound());
 	}
 	
 
@@ -47,6 +51,9 @@ public class Play extends BasicGameState{
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		atkb.update(input, sbg);
+		if(input.isKeyDown(Input.KEY_ESCAPE)){
+			sbg.enterState(0);
+		}
 	}
 	
 	public int getID() {

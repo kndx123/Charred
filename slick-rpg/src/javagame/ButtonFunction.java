@@ -6,8 +6,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class ButtonFunction {
 	public static String Resolution;
-	public static void function(String text, StateBasedGame sbg) throws SlickException {
-		switch (text){
+	public static void function(String ButtonName, StateBasedGame sbg) throws SlickException {
+		switch (ButtonName){
 			case "EXIT":
 					Menu.sound.stop();
 					AL.destroy();
@@ -23,15 +23,16 @@ public class ButtonFunction {
 			case "BACK":
 					sbg.enterState(0);
 					break;
-			case "WINDOWED":
-					Game.fullscreen = false;
-					Game.settings(Game.fullscreen, Game.width, Game.height);
-					Options.fullb.setText("FULLSCREEN");
-					break;
 			case "FULLSCREEN":
-					Game.fullscreen = true;
-					Game.settings(Game.fullscreen, Game.width, Game.height);
-					Options.fullb.setText("WINDOWED");
+					if(Options.fullb.getText()=="FULLSCREEN"){
+						Game.fullscreen = true;
+						Game.settings(Game.fullscreen, Game.width, Game.height);
+						Options.fullb.setText("WINDOWED");
+					}else{
+						Game.fullscreen = false;
+						Game.settings(Game.fullscreen, Game.width, Game.height);
+						Options.fullb.setText("FULLSCREEN");
+					}		
 					break;	
 			case "-Vol":
 					Menu.sound.play();
@@ -58,8 +59,7 @@ public class ButtonFunction {
 					Resolution = Options.resolutions[Options.activeRes];
 					Game.width = Integer.valueOf(Resolution.split("x")[0]);
 					Game.height = Integer.valueOf(Resolution.split("x")[1]);
-					Menu.updateButtons = true;
-					Options.updateButton = true;
+					updateButtons();
 					Game.settings(Game.appgc.isFullscreen(), Integer.valueOf(Resolution.split("x")[0]), Integer.valueOf(Resolution.split("x")[1]));
 				}
 				break;
@@ -70,12 +70,17 @@ public class ButtonFunction {
 					Resolution = Options.resolutions[Options.activeRes];
 					Game.width = Integer.valueOf(Resolution.split("x")[0]);
 					Game.height = Integer.valueOf(Resolution.split("x")[1]);
-					Menu.updateButtons = true;
-					Options.updateButton = true;
+					updateButtons();
 					Game.settings(Game.appgc.isFullscreen(), Integer.valueOf(Resolution.split("x")[0]), Integer.valueOf(Resolution.split("x")[1]));
 				}
 				break;
 		}
+	}
+	public static void updateButtons(){
+		System.out.println("test");
+		Menu.reInit();
+		Options.reInit();
+		Play.reInit();
 	}
 	
 }

@@ -42,8 +42,9 @@ public class Game extends StateBasedGame{
 	
 	public static void start(){
 		try{
+			System.setProperty("org.newdawn.slick.pngloader", "false");
 			appgc = new AppGameContainer(new Game(gamename));
-			appgc.setDisplayMode(1280, 720, false);
+			appgc.setDisplayMode(width, height, fullscreen);
 			appgc.setIcons(new String[] {"res/cha16.png", "res/cha24.png", "res/cha32.png" });
 			appgc.setAlwaysRender(true);
 			appgc.setVSync(true);

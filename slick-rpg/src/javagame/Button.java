@@ -14,6 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Button{
 	public int x;
 	public int y;
+	public String ButtonName;
 //	public Rectangle rect;
 	public String text;
 	public Color col = new Color(0,0,0,200);
@@ -29,7 +30,8 @@ public class Button{
 	public Point mouse;
 	public boolean isPlaying;
 	
-	public Button(int x, int y, String text,TrueTypeFont font, boolean hover, boolean playSound){
+	public Button(String ButtonName, int x, int y, String text,TrueTypeFont font, boolean hover, boolean playSound){
+		this.ButtonName = ButtonName;
 		this.x = x;
 		this.y = y;
 		this.text = text;
@@ -98,7 +100,7 @@ public class Button{
 					mousedown = true;	
 					}
 					if(mousedown && !input.isMouseButtonDown(0)){
-						ButtonFunction.function(text, sbg);
+						ButtonFunction.function(ButtonName, sbg);
 						mousedown = false;
 					}
 			}else{
@@ -111,23 +113,45 @@ public class Button{
 	public void setText(String text){
 		this.text = text;
 	}
-	
-//	public int getX(){
-//		this.x = x;
-//		return x;
-//	}
-//	
-//	public String getText(){
-//		this.text = text;
-//		return text;
-//	}
-//	
-//	public int getY(){
-//		this.y = y;
-//		return y;
-//	}
-	
-	public int getID() {
-		return 0;
+	public String getText(){
+		return text;
 	}
+	public String getName(){
+		return ButtonName;
+	}
+	public int getX(){
+		return x;
+	}
+	public void setX(int x){
+		this.x = x;
+	}
+	
+	public int getY(){
+		return y;
+	}
+	public void setY(int y){
+		this.y = y;
+	}
+	public TrueTypeFont getFont(){
+		return font;
+	}
+	public void setFont(TrueTypeFont font){
+		this.font = font;
+	}
+	public boolean getHover(){
+		return hover;
+	}
+	public void setHover(boolean hover){
+		this.hover = hover;
+	}
+	public boolean getSound(){
+		return playSound;
+	}
+	public void setSound(boolean playSound){
+		this.playSound = playSound;
+	}
+	
+//	public int getID() {
+//		return 0;
+//	}
 }
